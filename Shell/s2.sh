@@ -3,6 +3,8 @@ if [ $2 -eq 1 2>/dev/null ]; then
 
 	dirs=($( ls -1d */ 2>/dev/null ))
 	nrfl=$( ls -al | grep "^-" | wc -l )
+	fname=$( ls -al | grep "^-" | rev | sed -e 's/\([^ ]*\) .*/ \1 /' | rev)
+	echo $fname
 	for i in "${dirs[@]}"; do
 		pushd $i > /dev/null
 		bash $0 $i 1
